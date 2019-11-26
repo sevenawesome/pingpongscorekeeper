@@ -1,0 +1,59 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-buttons >
+                <ion-col>
+                    <ion-button   color="dark"  (click)="dismiss()"><ion-icon name="close-circle"></ion-icon></ion-button> 
+                </ion-col>
+            </ion-buttons>
+        </ion-row>
+            <ion-row>
+                <ion-col text-center>
+                    <img style="width: 9rem;margin-top: -3rem;margin-bottom: -1rem;"  src="../assets/img/icon.png">
+                    <br/>
+                    <ion-label style="font-weight: bold;color: #2a3a4d;font-size: 1.5rem;"><span style="font-weight: bold;text-transform: uppercase;">{{welcomeSubTitle}}</span></ion-label>
+                </ion-col>
+          </ion-row>
+          <ion-row>
+                <ion-col>
+                    <ion-list lines="none">
+                        <ion-item color="primary">
+                          <p>{{textOne}}</p>  
+                        </ion-item>
+
+                        <ion-item color="warning">
+                            <span style="font-weight: bold;">{{textTwo}}</span>
+                        </ion-item>
+
+                        <ion-item color="warning">
+                           <p>-{{textThree}}</p> 
+                        </ion-item>
+
+                        <ion-item color="warning">
+                          <p>-{{textFour}}</p>
+                        </ion-item>
+
+                        <ion-item color="warning">
+                            <p>-{{textFive}}</p>
+                        </ion-item>
+
+                        <ion-item color="warning">
+                            <p>-{{textSix}}</p>
+                        </ion-item>
+
+                        <ion-item color="warning">
+                            <p>-{{textSeven}}</p>
+                        </ion-item>
+
+                        <ion-item color="primary">
+                            {{textEight}} 
+                            <a style="color: #f0ca83;margin-left: 5px;" href="https://www.sevenawesome.com/#/" target="_blank"> sevenawesome</a>
+                        </ion-item>
+                      </ion-list>
+                </ion-col>
+             </ion-row>
+             
+     
+
+    </ion-grid>
+  </ion-content>

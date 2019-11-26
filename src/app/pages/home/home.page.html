@@ -1,0 +1,348 @@
+<ion-header no-border>
+  <ion-toolbar color="light"> 
+    <img [hidden]="!configuredByFirstTime" slot="start"  style="width: 2.5rem;float: left;margin-left: 5px;"  src="../assets/img/icon.png">
+    <label [hidden]="!configuredByFirstTime" style="font-weight: bold;vertical-align: middle;text-transform: uppercase;font-size: 1.1rem;color: #33495e;"> {{gameName}}</label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" >
+
+    <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="md-flag"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="bottom">
+          <ion-fab-button color="warning" (click)="changeLanguage('EN')">EN</ion-fab-button>
+          <ion-fab-button color="warning" (click)="changeLanguage('ES')">ES</ion-fab-button>
+          <ion-fab-button color="warning" (click)="changeLanguage('PT')">PT</ion-fab-button>
+          <ion-fab-button color="warning" (click)="changeLanguage('漢語')">漢語</ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+
+    
+
+  <div class="ion-padding">
+    <ion-grid>
+      <div [hidden]="!showWelcomePanel">
+          <ion-row [hidden]="configuredByFirstTime">
+              <ion-col text-center>
+                  <label style="font-weight: bold;font-size: 1.2em;text-transform: uppercase;color: #33495e;">
+                      {{welcomeTitle}}
+                      <br/>
+                      {{welcomeSubTitle}}
+                    </label>
+                    <br/>
+                    <img (click)="infoApp()" style="width: 7rem;margin-bottom: -2rem;"  src="../assets/img/icon.png">
+    
+                </ion-col>
+          </ion-row>
+          <ion-row [hidden]="!configuredByFirstTime">
+              <ion-col text-center>
+                    <img  style="background: #f0ca83;margin-top: 10px;border-radius: 8px;border-top: 2px solid #33495e;border-bottom: 2px solid #33495e;"  src="../assets/img/times.gif"> 
+                </ion-col>
+          </ion-row>
+          <ion-row [hidden]="configuredByFirstTime">
+              <ion-col>
+                 <br/>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col text-left size="10">
+                  <ion-label position="stacked" style="color: #33495e;font-weight: 500;font-size: 1rem;"><ion-icon name="contacts" color="primary" class="icon-label"></ion-icon> {{addTitle}}: ({{playerValue.length}}/20)</ion-label>
+                  <ion-input id="full" (keypress)="onKeyPressLabel()" maxlength="20" [(ngModel)]="playerValue" style="background-color: #f0ca83;border: 1px solid #f0ca83;color: #33495e;padding-left: 3px !important;" [autofocus]="autoFocusValue" #full></ion-input>
+
+                </ion-col>
+              <ion-col text-left size="2">
+                  <ion-button   color="primary" style="position: absolute;bottom: 4px;left: 0;" (click)="addPlayer()">
+                      <ion-icon name="add"></ion-icon>
+                    </ion-button>
+              </ion-col>
+          </ion-row>
+  
+           <ion-row>
+              <ion-col>
+                  <ion-list  lines="none" >
+                      <ion-item *ngFor="let player of players" style="padding: 0;border-bottom: 1px solid #f0ca83;    margin-left: -10px;  ">
+                        <ion-label slot="start" class="label-full">   <ion-icon color="warning" name="contact" class="icon-user-custom"></ion-icon> {{player.name.substr(0,23)}}</ion-label>
+                        <ion-button  color="danger" slot="end" (click)="removePlayerConfirmation(player.name)">
+                            <ion-icon name="md-remove"></ion-icon>
+                        </ion-button>
+                      </ion-item>
+                    </ion-list>
+              </ion-col>
+           </ion-row>
+  
+          
+      </div>
+  
+      <div>
+       
+        <div *ngIf="showDashBoardPanel && showHomePanel">
+            <ion-list lines="none">     
+              
+                <ion-item >
+                    <img  style="margin-top: 10px;border-radius: 8px;border-top: 2px solid #f0ca83;border-bottom: 2px solid #f0ca83;margin-left: auto;margin-right: auto;    width: 100%;height: 8rem;"  src="../assets/img/true.gif" /> 
+                </ion-item >
+
+                <ion-item >
+             
+                    <label style="font-weight: bold;vertical-align: middle;text-transform: uppercase;font-size: 1.1rem;margin-left: auto;margin-right: auto;color: #c3392a;">{{titleDashboard}}</label>
+               
+                  </ion-item>
+
+                <ion-item >
+
+                    <ion-row>
+                  
+                            <ion-button  color="danger" (click)="removeGameScoreConfirmation()">
+                                <ion-icon name="refresh"></ion-icon> {{btnResetGames}}
+                              </ion-button>
+                  
+                      
+                            <br/>
+  
+                            <ion-item style="padding: 0;    width: 100%;" color="warning">
+                                <ion-label slot="start">{{playerLabel}}</ion-label>
+                                <img slot="end" style="width: 1.5rem;"  src="../assets/img/tennis.png">
+                            </ion-item>
+                                <ion-list  style="border: 1px solid #f0ca83;overflow-y: scroll;padding: 0;margin: 0;    width: 100%;"  lines="none">
+                                    
+                                    <ion-item *ngFor="let player of players" style="padding: 0;border-bottom: 1px solid #c4c2c2;margin-left: -12px">
+                                          <ion-label slot="start" class="label-full">{{player.name}}</ion-label>
+                                          <ion-badge slot="end" color="danger" style="font-size:1.2rem;margin: 0px;">{{player.game}}</ion-badge>
+                                        </ion-item>
+                                      </ion-list>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col>
+                             <br/>
+                          </ion-col>
+                      </ion-row>
+  
+                  
+                </ion-item>
+
+
+            </ion-list>
+        </div>
+
+        <div *ngIf="showPlayGamePanel && showHomePanel">
+          
+            <ion-list lines="none">      
+            
+
+              <ion-row>
+
+                  <ion-col size="12" text-center>
+                    <ion-row>
+                      <ion-col size="12">
+
+
+                          <img [hidden]="!wePlaying" style="border-radius: 8px;border-top: 2px solid #f0ca83;border-bottom: 2px solid #f0ca83;margin-top: 25px;margin-bottom: -13px;"  src="../assets/img/playing.gif">
+
+                          <ion-card [hidden]="wePlaying" style="    background: transparent;margin: -5px;height: 9rem;box-shadow: 0 4px 16px rgb(255, 255, 255);margin-top: 24px;border-top: 2px solid #33495e;border-bottom: 2px solid #33495e;">
+                              <ion-card-header style="    margin-top: -1rem;" >
+                                  <ion-col size="12">  
+                                <label class="label-custom-title-board" style="float: left;width: 100%;top: 0px;background:white !important;margin-top: -8px;">{{clickLabel}}</label>
+                                  </ion-col>
+                                  <ion-col size="12">
+                                    <br/>
+                                      <label class="label-custom-title-board" >{{selectPlayerOneLabel}}: </label>
+                                      <br/>
+                                        <ion-col size="12">
+                                        <ion-select  [okText]="okLabel" [cancelText]="cancelLabel"  [(ngModel)]="playerOneName" style="font-size: 1.1rem !important;" class="select-custom"   id="cbxOne" placeholder="-" (ionChange)="onChange($event)" >
+                                            <ion-select-option  *ngFor="let player of players" value={{player.name}} disabled="{{player.disabled}}">{{player.name}}</ion-select-option>
+                                          </ion-select>
+                                        </ion-col>
+                                  </ion-col>
+
+                                  <ion-col size="12">
+                                      <ion-col size="12">
+                                          <label class="label-custom-title-board">{{selectPlayerTwoLabel}}: </label>
+                                      </ion-col>
+                                      
+                                        <ion-col size="12">
+                                            <ion-select [okText]="okLabel" [cancelText]="cancelLabel" [(ngModel)]="playerTwoName" style="font-size: 1.1rem !important;" class="select-custom"  id="cbxTwo" placeholder="-"  (ionChange)="onChange($event)" >
+                                                <ion-select-option  *ngFor="let player of players" value={{player.name}} disabled="{{player.disabled}}" >{{player.name}}</ion-select-option>
+                                                </ion-select>
+                                        </ion-col>
+                                  </ion-col>
+                                  
+                              </ion-card-header>
+                            
+                              <ion-card-content style="padding: 0px;padding-top: 14px;padding-bottom: 2px;">
+                     
+                              </ion-card-content>
+                            </ion-card>
+                      </ion-col>
+                      
+                
+                      </ion-row>
+                  </ion-col>
+
+
+                <ion-col size="6" text-center>
+
+                    <ion-card style="background: #f0ca83;margin: 0px;padding: 6px;">
+                        <ion-card-header style="margin: -1rem;">
+                            <label class="label-custom">{{selectPlayerOneLabel}}</label>
+                            <br/>
+                            <label class="label-custom-name">{{playerOneName.substr(0,11)}}</label>
+                        </ion-card-header>
+                      
+                        <ion-card-content style="padding: 0px;padding-top: 14px;padding-bottom: 2px;">
+                            <ion-badge style="font-size: 0.85rem;" color="primary" *ngIf="servingPlayerOne">{{serveLabel.toUpperCase()}} ({{servingCounter }}/{{serveAmount}})</ion-badge>
+                      <br/>  
+                      <ion-badge  color="danger" style="font-size: 3rem;">{{counterPlayerOne}}</ion-badge>
+                      <br/>
+                      <ion-button  [disabled]="!wePlaying" expand="block" color="primary" (click)="managePointsPlayerOne()">{{pointLabel}}</ion-button>
+                        </ion-card-content>
+                      </ion-card>
+                </ion-col>
+                
+                <ion-col size="6" text-center>
+                    <ion-card style="background: #f0ca83;margin: 0px;padding: 6px;">
+                        <ion-card-header style="margin: -1rem;">
+                            <label class="label-custom">{{selectPlayerTwoLabel}}</label>
+                            <br/>
+                            <label class="label-custom-name">{{playerTwoName.substr(0,11)}}</label>
+                        </ion-card-header>
+                      
+                        <ion-card-content style="padding: 0px;padding-top: 14px;padding-bottom: 2px;">
+                            <ion-badge style="font-size: 0.85rem;" color="primary" *ngIf="servingPlayerTwo">{{serveLabel.toUpperCase()}} ({{servingCounter }}/{{serveAmount}})</ion-badge>
+                      <br/>  
+                      <ion-badge  color="danger" style="font-size: 3rem;">{{counterPlayerTwo}}</ion-badge>
+                      <br/>
+                      <ion-button  [disabled]="!wePlaying"  expand="block" color="primary" (click)="managePointsPlayerTwo()">{{pointLabel}}</ion-button>
+                        </ion-card-content>
+                      </ion-card>
+                  </ion-col>
+
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                      <br/>
+                        <ion-button style="margin-top: -17px;"  *ngIf="!wePlaying"  expand="block" color="primary"  (click)="playGame()">{{playLabel}} <ion-icon name="play"></ion-icon></ion-button>   
+                            <ion-button style="margin-top: -4px;" *ngIf="wePlaying"   expand="block" color="danger"  (click)="stopGameConfirmation()">{{stopLabel}} <ion-icon name="ios-square"></ion-icon></ion-button> 
+
+                      </ion-col>
+                </ion-row>
+            </ion-list>
+        </div>
+
+
+        <div *ngIf="showServePanel && showHomePanel">
+          
+            <ion-list lines="none">      
+                
+                  <ion-item text-center>
+                      <img  style="margin-top: 10px;width: 5rem;margin-right: auto;margin-left: auto;"  src="../assets/img/players.gif"> 
+                    </ion-item>
+                    <ion-item text-center>
+                    
+                        <label style="    color: #33495e;font-weight: bold;vertical-align: middle;text-transform: uppercase;font-size: 1.1rem;    margin-right: auto;margin-left: auto;">{{confTitle}}</label>
+             
+                      </ion-item>
+
+                  <ion-item >
+  
+                          <ion-list>
+                              <ion-radio-group>
+                                <ion-list-header>
+                                  <ion-label color="primary">{{confQuestionOne}}</ion-label>
+                                </ion-list-header>
+                            
+                                <ion-item>
+                                  <ion-label color="primary">{{selectPlayerOneLabel}}</ion-label>
+                                  <ion-radio (ionSelect)="changeWhoseServePlayerOneTwo(false)" slot="start" value="playerone" [checked]="servingPlayerOne"></ion-radio>
+                                </ion-item>
+                            
+                                <ion-item>
+                                  <ion-label color="primary">{{selectPlayerTwoLabel}}</ion-label>
+                                  <ion-radio (ionSelect)="changeWhoseServePlayerOneTwo(true)" slot="start" value="playertwo" [checked]="servingPlayerTwo"></ion-radio>
+                                </ion-item>
+                              </ion-radio-group>
+                            </ion-list>
+                    </ion-item>
+
+                    <ion-item >
+                        <ion-list>
+                            <ion-radio-group >
+                              <ion-list-header>
+                                <ion-label color="primary">{{confQuestionTwo}}</ion-label>
+                              </ion-list-header>
+                          
+                              <ion-item>
+                                <ion-label color="primary">2 {{confTimes}}</ion-label>
+                                <ion-radio (ionSelect)="changeServing(2)"  slot="start" value="2" checked></ion-radio>
+                              </ion-item>
+                          
+                              <ion-item>
+                                <ion-label color="primary">5 {{confTimes}}</ion-label>
+                                <ion-radio (ionSelect)="changeServing(5)" slot="start" value="5" ></ion-radio>
+                              </ion-item>
+                            </ion-radio-group>
+                          </ion-list>
+                    </ion-item>
+            </ion-list>
+
+           
+
+            
+
+          
+          </div>
+         
+      
+      </div>
+
+
+    </ion-grid>
+
+  </div>
+</ion-content>
+
+
+
+
+<ion-footer no-border>
+  <ion-toolbar>
+
+      <ion-row [hidden]="configuredByFirstTime">
+          <ion-col>
+              <ion-button style="margin-left: 20px;margin-right: 20px;" expand="block" color="primary"  (click)="verifyReadyToPlay()">{{buttonReadyToPlay}} <ion-icon name="play"></ion-icon></ion-button> 
+          </ion-col>
+      </ion-row>
+
+    <ion-tabs [hidden]="!configuredByFirstTime">
+      <ion-tab-bar  color="light">
+
+          <ion-tab-button  (click)="showPlayPanel()">
+              <ion-icon name="play"></ion-icon>
+              <ion-label>{{tabGameLabel}}</ion-label>
+            </ion-tab-button>
+
+
+        <ion-tab-button [disabled]="wePlaying" (click)="showDashboard()">
+          <ion-icon name="clipboard"></ion-icon>
+          <ion-label>{{tabDashBoardLabel}}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button  [disabled]="wePlaying" (click)="showServeConfPanel()">
+          <ion-icon name="settings"></ion-icon>
+          <ion-label>{{tabServeLabel}}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button  [disabled]="wePlaying" (click)="addNewPlayer()">
+          <ion-icon name="contacts"></ion-icon>
+          <ion-label>{{tabPlayerLabel}}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button color="primary" [disabled]="wePlaying" (click)="infoApp()">
+          <ion-icon name="information-circle"></ion-icon>
+          <ion-label>{{tabAboutLabel}}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

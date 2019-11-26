@@ -1,0 +1,18 @@
+ 
+  <ion-content color="light">
+
+    <ion-grid>
+            <ion-row>
+                <ion-col text-center>
+                    <img  src="../assets/img/winner.gif">
+                    <br/>
+                    <ion-label style="font-size: 2rem;"><span style="font-weight: bold;color: #33495e;">{{winnerName}}</span>, {{winnerMessage}}</ion-label>
+                    <br/>
+                    <ion-label style="font-size: 2rem;">{{winnerSubOneMessage}} <span style="font-weight: bold;color: #33495e;">{{loserName}}</span> {{winnerSubTwoMessage}} <span style="font-weight: bold;color: #33495e;">{{winnerPoints}}</span> {{winnerSubFourMessage}} {{ winnerSubThreeMessage}} <span style="font-weight: bold;">{{loserPoints}}</span> {{winnerSubFourMessage}}</ion-label>
+                    <br/>
+                    <ion-label style="font-size: 2rem;">{{winnerSubFiveMessage}}</ion-label>
+                    <ion-button  size="default" expand="block" color="primary"  (click)="dismiss()" style="font-size: 1.5rem;" >{{buttonNextGame}}</ion-button> 
+                </ion-col>
+          </ion-row>
+    </ion-grid>
+  </ion-content>

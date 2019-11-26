@@ -4,12 +4,11 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #33495e;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade:#33495e;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
@@ -36,20 +35,20 @@
   --ion-color-success-tint: #28e070;
 
   /** warning **/
-  --ion-color-warning: #ffce00;
+  --ion-color-warning: #f0ca83;
   --ion-color-warning-rgb: 255, 206, 0;
-  --ion-color-warning-contrast: #ffffff;
-  --ion-color-warning-contrast-rgb: 255, 255, 255;
-  --ion-color-warning-shade: #e0b500;
-  --ion-color-warning-tint: #ffd31a;
+  --ion-color-warning-contrast: #33495e;
+  --ion-color-warning-contrast-rgb: 51, 73, 94;
+  --ion-color-warning-shade: #f0ca83;
+  --ion-color-warning-tint: #f0ca83;
 
   /** danger **/
-  --ion-color-danger: #f04141;
+  --ion-color-danger: #c3392a;
   --ion-color-danger-rgb: 245, 61, 61;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #d33939;
-  --ion-color-danger-tint: #f25454;
+  --ion-color-danger-shade: #c3392a;
+  --ion-color-danger-tint: #c3392a;
 
   /** dark **/
   --ion-color-dark: #222428;
@@ -68,10 +67,23 @@
   --ion-color-medium-tint: #a2a4ab;
 
   /** light **/
-  --ion-color-light: #f4f5f8;
+  --ion-color-light: white;
   --ion-color-light-rgb: 244, 244, 244;
   --ion-color-light-contrast: #000000;
   --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #d7d8da;
-  --ion-color-light-tint: #f5f6f9;
+  --ion-color-light-shade: white;
+  --ion-color-light-tint: white;
+
+  /** light-grey **/
+  --ion-color-light-grey: #dddddd;
+  --ion-color-light-grey-rgb: 244, 244, 244;
+  --ion-color-light-grey-contrast: #000000;
+  --ion-color-light-grey-contrast-rgb: 0, 0, 0;
+  --ion-color-light-grey-shade: #d7d8da;
+  --ion-color-light-grey-tint: #f5f6f9;
+
+  
+
+  
+
 }
